@@ -1,0 +1,43 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from ipywidgets import interact
+from pandas.api.types import CategoricalDtype
+data=pd.read_csv('tested (1).csv')
+print("shape of the dataset :", data.shape)
+data.head()
+data['Survived'].value_counts()
+sns.heatmap(data.isnull())
+data["Sex"].replace("male", 0, inplace=True)
+data["Sex"].replace("female", 1, inplace=True)
+data.describe()
+data["Embarked"].replace("S", 2, inplace=True)
+data["Embarked"].replace("C", 1, inplace=True)
+data["Embarked"].replace("Q", 0, inplace=True)
+x=data.drop(['Cabin', "Ticket", "Name"],axis=1)
+x=x.astype(float)
+y=y.astype(float)
+np.set_printoptions(threshold=np.inf)
+x
+pd.set_option('display.max_rows',None)
+data["Age"].value_counts()
+# replace nan with any of maximum value ie 21 or 24
+x=np.nan_to_num(x,nan=21)
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+x_train,x_test,y_train,y_test = train_test_split(x , y , test_size=0.2, random_state=23)
+print("shape of xtrain",x_train.shape)
+print("shape of ytrain",x_test.shape)
+print("shape of xtest",y_train.shape)
+print("shape of ytest",y_test.shape)
+model= LogisticRegression(random_state=0)
+model.fit(x_train, y_train)
+y_pred = model.predict(x_test)
+pred=model.predict((np.array([[8.930000e+02, 1.000000e+00, 3.000000e+00, 1.000000e+00,
+        4.700000e+01, 2.100000e+01, 0.000000e+00, 7.000000e+00,
+        2.000000e+00]])))
+print("answer is :", pred)
