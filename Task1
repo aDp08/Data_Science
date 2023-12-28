@@ -16,6 +16,7 @@ data["Embarked"].replace("S", 2, inplace=True)
 data["Embarked"].replace("C", 1, inplace=True)
 data["Embarked"].replace("Q", 0, inplace=True)
 x=data.drop(['Cabin', "Ticket", "Name"],axis=1)
+y=data['Survived']
 x=x.astype(float)
 y=y.astype(float)
 np.set_printoptions(threshold=np.inf)
